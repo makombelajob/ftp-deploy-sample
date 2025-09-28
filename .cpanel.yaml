@@ -1,0 +1,8 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/symfony_test/FreeLancer/deploy-config/
+    - /bn/cp -R * $DEPLOYPATH
+  exclude:
+    - .git
+    - .github
+    - .idea

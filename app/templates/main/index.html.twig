@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!
+{% endblock %}
+
+{% block body %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+		<main>
+            <h2>Exemple de configuration de déploiement (YAML)</h2>
+            <pre><code class="language-yaml">
+                deployment:
+                    tasks:
+                        - export DEPLOYPATH=/home/symfony_test/FreeLancer/portfolio/
+                        - /bin/cp -R * $DEPLOYPATH
+                    exclude:
+                        - .git
+                        - .github
+                        - mysql
+                        - .idea
+            </code></pre>
+            {# ton main existe déjà dans ton layout #}
+	        <h2>Exemple de workflow GitHub Actions (déploiement FTPS)</h2>
+
+	        <pre><code class="language-yaml">
+            {% verbatim %}
+                
+            
+                name: Deploy via FTPS
+
+                on:
+                push:
+                    branches: [main]
+
+                jobs:
+                ftp-deploy:
+                    runs-on: ubuntu-latest
+                    steps:
+                    # 1️⃣ Récupération du code source
+                    - name: Checkout repository
+                        uses: actions/checkout@v4
+
+                    # 2️⃣ Étape de build (si nécessaire)
+                    - name: Build (si nécessaire)
+                        run: |
+                        # Ajoutez vos commandes de build ici si besoin
+                        echo "Aucune étape de build configurée"
+
+                    # 3️⃣ Synchronisation des fichiers via FTPS adding config to git repository (action-keys)
+                    - name: Sync files via FTPS
+                        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+                        with:
+                        {# add in git action #}
+
+                        server: ${{ secrets.FTP_HOST }} # hostname
+                        username: ${{ secrets.FTP_USERNAME }} # username
+                        password: ${{ secrets.FTP_PASSWORD }} # ton mot de passe
+                        protocol: ftps # FTPS explicite
+                        port: 21 # Port FTP standard
+                        local-dir: ./path-local/ # chemin relatif dans le repo
+                        server-dir: ./path/server/
+                        exclude: |
+                            **/.git*
+                            **/node_modules/*
+                        dry-run: false
+                        verbose: true
+            {% endverbatim %}
+            </code></pre>
+
+    </main>
+
+	</body>
+{% endblock %}
