@@ -1,0 +1,85 @@
+// Variables
+$primary-color: #4CAF50;
+$secondary-color: #272822;
+$background-color: #f4f4f9;
+$text-color: #333;
+$code-text-color: #f8f8f2;
+$font-family: 'Arial', sans-serif;
+
+// Reset CSS
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Body
+body {
+  font-family: $font-family;
+  line-height: 1.6;
+  background-color: $background-color;
+  color: $text-color;
+  padding: 20px;
+}
+
+// Main container
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+// Headings
+h2 {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+// Styles pour les h3
+h3 {
+  font-size: 1.2rem;
+  color: darken($primary-color, 10%);
+  border-left: 4px solid $primary-color;
+  padding-left: 10px;
+  margin: 15px 0;
+  font-weight: bold;
+}
+
+// Code block
+pre {
+  background: $secondary-color;
+  color: $code-text-color;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  margin: 20px;
+
+  code {
+    font-family: 'Courier New', Courier, monospace;
+  }
+}
+
+// Footer
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: lighten($text-color, 20%);
+}
+
+// Links
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

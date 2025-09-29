@@ -1,17 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!
+{% block title %}Home page
 {% endblock %}
 
 {% block body %}
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Document</title>
-	</head>
-	<body>
 		<main>
             <h2>Exemple de configuration de déploiement (YAML)</h2>
+            <h3>Sauvegarder ces fichiers au même emplacements que le fichier .git</h3>
             <pre><code class="language-yaml">
                 deployment:
                     tasks:
@@ -25,6 +20,9 @@
             </code></pre>
             {# ton main existe déjà dans ton layout #}
 	        <h2>Exemple de workflow GitHub Actions (déploiement FTPS)</h2>
+            <h3>Crée le dossier .github/workflows/deploy.yaml</h3>
+
+
 
 	        <pre><code class="language-yaml">
             {% verbatim %}
@@ -72,6 +70,4 @@
             </code></pre>
 
     </main>
-
-	</body>
 {% endblock %}
